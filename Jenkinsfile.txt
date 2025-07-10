@@ -34,5 +34,36 @@ pipeline
 				sh 'mvn package'
 			}
 		}
+		stage('Build Docker Image')
+		{
+			steps
+			{
+			    sh 'cp /var/lib/jenkins/workspace/abc-ci-cd/target/abctechnologies.war /var/lib/jenkins/workspace/abc-ci-cd/abctechnologies.war'
+				
+                sh 'docker build -t elhadje87/abc-ci-cd:$BUILD_NUMBER .'
+
+			}
+		}
+
+		stage('Push Docker Image')
+		{ 
+			steps
+			{   
+			    withDockerRegistry([ credentialsId: "el-dockerhub", url: "" ])
+			    {   
+			       sh 'docker push elhadje87/abc-ci-cd:$BUILD_NUMBER'
+				   
+			    }
+			}
+		}
+
+		stage('Deploy as container')
+		{
+			steps
+			{
+				sh 'docker run -itd -P elhadje87/abc-ci-cd:$BUILD_NUMBER'
+			}
+		}
+
    }
 }
