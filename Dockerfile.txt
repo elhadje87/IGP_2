@@ -1,0 +1,8 @@
+FROM tomcat:latest
+<<<<<<< HEAD:dockerfile.txt
+COPY ABCtechnologies-1.0.war /usr/local/tomcat/webapps/
+CMD ["catalina.sh", "run"]
+=======
+COPY abctechnologies.war /usr/local/tomcat/webapps/
+CMD ["catalina.sh", "run"]
+>>>>>>> 860c815784872300e5611d0998f196d55bf0b3b4:Dockerfile.txt
