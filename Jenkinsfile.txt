@@ -38,7 +38,7 @@ pipeline
 		{
 			steps
 			{
-			    sh 'cp /var/lib/jenkins/workspace/abc-ci-cd/target/abctechnologies-1.0.war /var/lib/jenkins/workspace/abc-ci-cd/abctechnologies-1.0.war'
+			    sh 'cp /var/lib/jenkins/workspace/abc-ci-cd/target/ABCtechnologies-1.0.war /var/lib/jenkins/workspace/abc-ci-cd/ABCtechnologies-1.0.war'
 				
                 sh 'docker build -t elhadje87/abc-ci-cd:$BUILD_NUMBER .'
 
