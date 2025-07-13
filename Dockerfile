@@ -1,3 +1,3 @@
-FROM tomcat:latest
+FROM tomcat:9.0
 COPY ABCtechnologies-1.0.war /usr/local/tomcat/webapps/
 CMD ["catalina.sh", "run"]
