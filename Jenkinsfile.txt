@@ -64,6 +64,16 @@ pipeline
 				sh 'docker run -itd -P elhadje87/abctechnologies:$BUILD_NUMBER'
 			}
 		}
+		
+		stage('Deploy to kubernetes')
+		{
+			steps
+			{
+				sh 'kubectl apply -f abcdeploy.yaml'
+				sh 'kubectl apply -f abcservice.yaml'
+			}
+		}
+
 
    }
 }
