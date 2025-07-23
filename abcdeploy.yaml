@@ -16,4 +16,4 @@ spec:
       - name: abc-app
         image: elhadje87/abctechnologies:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 9090
