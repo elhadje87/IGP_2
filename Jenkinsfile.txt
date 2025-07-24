@@ -69,7 +69,7 @@ pipeline
 		{
 			steps{
 				script{
-						kubeconfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIRYA+CQvwvAcwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+						withKubeConfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIRYA+CQvwvAcwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
 AxMKa3ViZXJuZXRlczAeFw0yNTA3MjEwMTI3NDhaFw0zNTA3MTkwMTMyNDhaMBUx
 EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 AoIBAQDrPJQ//Ul5VX/sjPpRxWHCGjqJd3B0WbMHlZPQan8/FNAyVTdnjBqe7aIk
@@ -85,7 +85,7 @@ cjDTyVb17MxxNwi+qcjp1fXrgEEG3lZCqSmsAW7PFP3uL0L1bRBIcfStKMWy7rak
 D0ArqRVCi8NOO0PJwWPu3mLtzS7FjcZnLh0eshMCCeLGStCjSFB9NYKXbWyXT/gc
 aGCOKXKGReFR1cjOvrber1W6Nrtd5xUNIymMxOq1kVoSuTDqt4FMjCrLSeLqO6fW
 JOAafqJ4vvu91CWV+VW3yKCQh5Yx+TGMsDg8P/lCSpQzRDLP2TW6w00ahyM30Ymz
-lpkyOnxZgsRr''', credentialsId: 'jenkins-secret', serverUrl: 'https://172.31.88.91:6443') {
+lpkyOnxZgsRr''', clusterName: '', contextName: '', credentialsId: 'jenkins-secret', namespace: 'jenkins', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.88.91:6443') {
 							
 				
 			
