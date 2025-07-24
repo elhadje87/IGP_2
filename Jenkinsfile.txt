@@ -41,6 +41,7 @@ pipeline
 			    sh 'cp /var/lib/jenkins/workspace/abc-ci-cd2/target/ABCtechnologies-1.0.war /var/lib/jenkins/workspace/abc-ci-cd2/ABCtechnologies-1.0.war'
 				
                 sh 'docker build -t elhadje87/abctechnologies:$BUILD_NUMBER .'
+				sh 'docker tag elhadje87/abctechnologies:latest'
 
 			}
 		}
@@ -52,6 +53,7 @@ pipeline
 			    withDockerRegistry([ credentialsId: "el-dockerhub", url: "" ])
 			    {   
 			       sh 'docker push elhadje87/abctechnologies:$BUILD_NUMBER'
+				   sh 'docker push elhadje87/abctechnologies:latest'
 				   
 			    }
 			}
@@ -61,7 +63,7 @@ pipeline
 		{
 			steps
 			{
-				sh 'docker run -itd -P elhadje87/abctechnologies:$BUILD_NUMBER'
+				sh 'docker run -itd -P elhadje87/abctechnologies:latest'
 			}
 		}
 		
