@@ -1,6 +1,9 @@
 pipeline
 {
 	agent any
+	environment {
+				Docker_Registry = "elhadje87/abctechnologies"
+				}
 	stages
 	{
 		stage('Code Checkout')
@@ -40,8 +43,8 @@ pipeline
 			{
 			    sh 'cp /var/lib/jenkins/workspace/abc-ci-cd2/target/ABCtechnologies-1.0.war /var/lib/jenkins/workspace/abc-ci-cd2/ABCtechnologies-1.0.war'
 				
-                sh 'docker build -t elhadje87/abctechnologies:$BUILD_NUMBER .'
-				sh 'docker tag elhadje87/abctechnologies:latest'
+                sh 'docker build -t ${Docker_Registry}:$BUILD_NUMBER .'
+				sh 'docker tag ${Docker_Registry}:$BUILD_NUMBER and ${Docker_Registry}:latest'
 
 			}
 		}
@@ -52,8 +55,8 @@ pipeline
 			{   
 			    withDockerRegistry([ credentialsId: "el-dockerhub", url: "" ])
 			    {   
-			       sh 'docker push elhadje87/abctechnologies:$BUILD_NUMBER'
-				   sh 'docker push elhadje87/abctechnologies:latest'
+			       sh 'docker push ${Docker_Registry}:$BUILD_NUMBER'
+				   sh 'docker push ${Docker_Registry}:latest'
 				   
 			    }
 			}
