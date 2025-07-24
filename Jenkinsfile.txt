@@ -67,11 +67,32 @@ pipeline
 		
 		stage('Deploy to kubernetes')
 		{
-			steps
-			{
-				sh 'kubectl apply -f abcdeploy.yaml'
-				sh 'kubectl apply -f abcservice.yaml'
-			}
+			steps{
+				script{
+						kubeconfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIRYA+CQvwvAcwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+AxMKa3ViZXJuZXRlczAeFw0yNTA3MjEwMTI3NDhaFw0zNTA3MTkwMTMyNDhaMBUx
+EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQDrPJQ//Ul5VX/sjPpRxWHCGjqJd3B0WbMHlZPQan8/FNAyVTdnjBqe7aIk
+YUWolqDlX8RS5fLzalCIz8Kt+y6bzY7Dw2LDChRv9HQK2r1oHu8pzanIiWwmWuib
+uJjUjyTKZBYy5D13uyDVazRVaqwUfTxINQzPDlD7mV0BL4cn/Wyxi29zExWIh/cJ
+JloPre6R6V3Mxd5SPfYsQcQAN+IgQlTyRZS4rusVBi1+5/PWBIkGLJJE+Ov8ci9z
+1HhbXVbuvPe9ITAXyytuU9K5WzB4gzrwfesLK7yBclqfRTWZGFfaF+4O6JZn5cxb
++qqRwQMSIeWlWYPpBV5ezvlWUmKTAgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRSP7cHCHW6eXofi/hd2sL+hfjzajAV
+BgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQBnyBy3pTde
+ANAYvutVEnolz1mUGDsHWplmGJctTZ4ePxHTU1DKrSC+cHsR4QGh03gdqn8DDahT
+cjDTyVb17MxxNwi+qcjp1fXrgEEG3lZCqSmsAW7PFP3uL0L1bRBIcfStKMWy7rak
+D0ArqRVCi8NOO0PJwWPu3mLtzS7FjcZnLh0eshMCCeLGStCjSFB9NYKXbWyXT/gc
+aGCOKXKGReFR1cjOvrber1W6Nrtd5xUNIymMxOq1kVoSuTDqt4FMjCrLSeLqO6fW
+JOAafqJ4vvu91CWV+VW3yKCQh5Yx+TGMsDg8P/lCSpQzRDLP2TW6w00ahyM30Ymz
+lpkyOnxZgsRr''', credentialsId: 'jenkins-secret', serverUrl: 'https://172.31.88.91:6443') {
+							
+				
+			
+							sh 'kubectl apply -f abcdeploy.yaml'
+							sh 'kubectl apply -f abcservice.yaml'}
+					}
+				}
 		}
 
 
