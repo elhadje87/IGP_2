@@ -54,7 +54,7 @@ pipeline
                              ansiblePlaybook credentialsId: 'ansjenkins',
 			            disableHostKeyChecking: true,
 			                      installation: 'ansible',
-			                         inventory: 'nodes.inv',
+			                         inventory: '/etc/ansible/hosts',
 			                          playbook: 'docker_dep_playbk.yml',
 			                      vaultTmpPath: ''
 							}
