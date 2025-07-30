@@ -60,6 +60,23 @@ pipeline
 							}
 					} 
             }
+		stage('Deploy on kubernetes') 
+           {
+             steps {
+                    
+                    script {
+                             ansiblePlaybook credentialsId: 'ansjenkins',
+			            disableHostKeyChecking: true,
+			                      installation: 'ansible',
+			                         inventory: '/etc/ansible/hosts',
+			                          playbook: 'deply-playbook.yml',
+			                      vaultTmpPath: ''
+		          }
+		         	
+                   } 
+                  
+            }
+
 
 		
 
