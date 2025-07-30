@@ -2,8 +2,8 @@ pipeline
 {
 	agent any
 	environment {
-				WORK_DIR = " /var/lib/jenkins/workspace/ci-cd-ansible/"
-				Docker_Registry = "elhadje87/abctechnologies"
+				WORK_DIR = "/var/lib/jenkins/workspace/ci-cd-ansible/"
+				Docker_Registry = "elhadje87/tech_app"
 				}
 	stages
 	{
