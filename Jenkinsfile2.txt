@@ -2,7 +2,7 @@ pipeline
 {
 	agent any
 	environment {
-				WORK_DIR = " /var/lib/jenkins/workspace/ci-cd-ansible"
+				WORK_DIR = " /var/lib/jenkins/workspace/ci-cd-ansible/"
 				Docker_Registry = "elhadje87/abctechnologies"
 				}
 	stages
@@ -70,7 +70,7 @@ pipeline
 			            disableHostKeyChecking: true,
 			                      installation: 'ansible',
 			                         inventory: '/etc/ansible/hosts',
-			                          playbook: 'deply-playbook.yml',
+			                          playbook: './deply-playbook.yml',
 			                      vaultTmpPath: ''
 		          }
 		         	
