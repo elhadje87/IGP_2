@@ -65,7 +65,7 @@ pipeline
              steps {
                     
                     script {
-                             ansiblePlaybook credentialsId: 'ansjenkins',
+                             ansiblePlaybook credentialsId: 'mykubernetes',
 			            disableHostKeyChecking: true,
 			                      installation: 'ansible',
 			                         inventory: '/etc/ansible/hosts',
