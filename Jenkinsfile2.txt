@@ -72,7 +72,7 @@ pipeline
 							 inventory: '/etc/ansible/hosts', 
 							 playbook: '/var/lib/jenkins/workspace/ci-cd-ansible/deply-playbook.yml', 
 							 vaultCredentialsId: 'jenkins-secret',
-							 vaultTmpPath: ',
+							 vaultTmpPath: ''
 			            
 		          }
 		         	
