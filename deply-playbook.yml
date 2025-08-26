@@ -1,0 +1,54 @@
+---
+- name: Deploy Kubernetes resources
+  hosts: kubernetes
+  become: true
+  user: ubuntu
+
+  tasks:
+    
+    - name: Ensure .kube directory exists for ubuntu user
+      file:
+        path: /home/ubuntu/.kube
+        state: directory
+        mode: '0755'
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Copy Kubeconfig to .kube directory for kubectl access
+      copy:
+        src: /etc/kubernetes/admin.conf 
+        dest: /home/ubuntu/.kube/config
+        owner: ubuntu
+        group: ubuntu
+        mode: '0600' 
+        remote_src: yes
+
+    - name: Copy deployment YAML to remote host
+      copy:
+        src: /var/lib/jenkins/workspace/ci-cd-ansible/abctech-deply.yml 
+        dest: /tmp/abctech-deply.yml 
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644' 
+
+    - name: Copy service YAML to remote host
+      copy:
+        src: /var/lib/jenkins/workspace/ci-cd-ansible/abctech-servc.yml 
+        dest: /tmp/abctech-servc.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+        
+    - name: Create deployment pod
+      command: kubectl apply -f /tmp/abctech-deply.yml 
+      environment:
+        KUBECONFIG: /home/ubuntu/.kube/config
+
+    - name: Create service pod
+      command: kubectl apply -f /tmp/abctech-servc.yml 
+      environment:
+        KUBECONFIG: /home/ubuntu/.kube/config
+
+...
+
+
